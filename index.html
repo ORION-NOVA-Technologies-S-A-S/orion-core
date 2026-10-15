@@ -2,215 +2,600 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>ORION CORE · Ciberseguridad</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORION CORE · Ciberseguridad para tu negocio</title>
+<meta name="description" content="ORION CORE, el producto de ciberseguridad de Orion Nova Technologies: monitoreo, auditoría de vulnerabilidades, protección de webs y apps, y capacitación. Neiva, Huila, Colombia.">
+<meta property="og:title" content="ORION CORE · Ciberseguridad para tu negocio">
+<meta property="og:description" content="El núcleo que protege tu negocio digital. Un producto de Orion Nova Technologies.">
+<meta property="og:image" content="assets/logo-orion-nova.png">
+<link rel="icon" href="assets/logo-orion-nova.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-html{scroll-behavior:smooth}body{margin:0;background:#07080D}
-a{color:#AEB6FF}a:hover{color:#FFFFFF}
+/* Paleta y tipografía tomadas de la página principal de Orion Nova Technologies */
+:root{
+  --bg:#08111F; --bg-2:#0B1629; --surface:#101B32; --surface-2:#14223F;
+  --line:#1E2C4A; --line-2:#2A3D63;
+  --fg:#FFFFFF; --text:#DCE5F3; --muted:#9AABC6; --silver:#C9D4E6;
+  --cyan:#06B6D4; --cyan-2:#67E8F9; --blue:#4F7CFF;
+  --ok:#22C55E; --warn:#F5B544; --bad:#F87171;
+  --f-display:"Sora","Segoe UI",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--f-display);color:var(--fg);margin:0;letter-spacing:-.02em;line-height:1.12}
+p{margin:0}
+a{color:var(--cyan-2)}a:hover{color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:.8em 1.3em;border-radius:12px;border:1px solid transparent;font:700 .97rem/1.1 var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#04111D}
+.btn-primary:hover{color:#04111D;box-shadow:0 14px 34px -12px rgba(103,232,249,.7)}
+.btn-ghost{border-color:var(--line-2);color:var(--fg);background:transparent}
+.btn-ghost:hover{border-color:var(--cyan)}
+.btn-ori{background:var(--warn);color:#1B1203}
+.btn-ori:hover{color:#1B1203;box-shadow:0 14px 34px -12px rgba(245,181,68,.6)}
+:focus-visible{outline:2px solid var(--cyan-2);outline-offset:3px}
+
+/* Encabezado con el logo de Orion Nova */
+header.top{position:sticky;top:0;z-index:40;background:rgba(8,17,31,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.brand img{height:58px;width:auto;mix-blend-mode:lighten;display:block}
+.wordmark{display:grid;line-height:1.05;white-space:nowrap}
+.wm-1{font-family:var(--f-display);font-weight:800;font-size:1.15rem;letter-spacing:.1em;color:#E8EEF8}
+.wm-1 b{background:linear-gradient(90deg,var(--blue),var(--cyan-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wm-2{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.24em;color:#8FA7D8;margin-top:4px;text-transform:uppercase}
+nav.main{display:flex;align-items:center;flex-wrap:wrap;gap:6px 26px;font-size:.95rem}
+nav.main a{color:var(--silver);text-decoration:none}
+nav.main a:hover{color:#fff}
+nav.main .btn{color:#04111D;padding:.6em 1.1em;min-height:44px}
+@media (max-width:820px){nav.main a:not(.btn){display:none}}
+@media (max-width:420px){.brand img{height:44px}.wm-1{font-size:.95rem}.wm-2{font-size:.5rem}}
+
+/* Héroe */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding:72px 0 88px}
+.hero h1{font-weight:800;font-size:clamp(2.3rem,5vw,4rem);line-height:1.05;margin:18px 0}
+.hero h1 span{color:var(--cyan-2)}
+.hero .lead{font-size:1.15rem;color:var(--muted);max-width:34rem}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stage{position:relative;background:radial-gradient(80% 60% at 50% 35%,rgba(20,34,63,.9),rgba(11,22,41,.6));border:1px solid var(--line);border-radius:26px;padding:22px 22px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:end}
+.stage .tag-c{position:absolute;left:20px;top:16px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-family:var(--f-mono);font-size:.8rem;align-self:center;margin-top:30px}
+.checks li{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:9px}
+.checks li span:first-child{color:var(--silver)}
+.st-ok{color:#4ADE80}.st-warn{color:var(--warn)}
+.status-pill{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-family:var(--f-mono);font-size:.75rem;font-weight:600;color:#04111D;background:#4ADE80;padding:4px 12px;border-radius:999px}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding:48px 0 64px}}
+@media (max-width:520px){.stage{grid-template-columns:1fr}.checks{margin-top:0}}
+
+/* ORI: el búho, animado (el mismo de la página principal) */
+.character{display:flex;flex-direction:column;align-items:center;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;width:100%}
+.character svg{width:100%;max-width:240px;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+.character .tag{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.bubble{position:relative;background:rgba(16,27,50,.95);border:1px solid rgba(245,181,68,.5);border-radius:14px;padding:10px 13px;font-size:.88rem;line-height:1.45;color:var(--text);margin-bottom:10px;text-align:left;min-height:3.4em;width:100%}
+.bubble::after{content:"";position:absolute;bottom:-7px;left:50%;width:12px;height:12px;background:inherit;border-right:1px solid rgba(245,181,68,.5);border-bottom:1px solid rgba(245,181,68,.5);transform:translateX(-50%) rotate(45deg)}
+.bubble b{color:var(--warn)}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.blink{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+.blink.late{animation-delay:1.7s}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.ring-spin{transform-box:fill-box;transform-origin:center;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ori-host{--ox:0;--oy:0}
+.ori-head{transform-box:view-box;transform-origin:130px 170px;animation:var(--tilt,none)}
+.ori-host.tilt{--tilt:tilt .8s ease-in-out}
+@keyframes tilt{30%{transform:rotate(-9deg)}70%{transform:rotate(6deg)}}
+.ori-pupil{transform:translate(calc(var(--ox)*6px),calc(var(--oy)*5px));transition:transform .3s ease-out}
+.ori-jaw{transform-box:fill-box;transform-origin:center top;animation:var(--jaw,none)}
+.ori-brow{transform:var(--brow,none);transition:transform .25s ease}
+.ori-wing{transform-box:view-box;transform-origin:62px 300px;animation:var(--flap,none)}
+.ori-tuft{transform-box:fill-box;transform-origin:center bottom;transform:var(--tuft,none);transition:transform .25s ease}
+.ori-ring{animation-duration:var(--ring,9s)}
+.ori-host.ori-talking{--jaw:jaw .17s ease-in-out infinite alternate;--brow:translateY(-5px)}
+.ori-host.ori-flap{--flap:flap .45s ease-in-out 3}
+.ori-host.ori-scan{--ring:1.2s;--brow:translateY(-3px)}
+.ori-host:hover,.ori-host.ori-alert{--tuft:rotate(-8deg) scaleY(1.12)}
+@keyframes jaw{from{transform:translateY(0) scaleY(.6)}to{transform:translateY(4px) scaleY(1.15)}}
+@keyframes flap{0%,100%{transform:rotate(0)}50%{transform:rotate(-24deg)}}
+@media (prefers-reduced-motion:reduce){.float,.blink,.ring-spin{animation:none}.ori-host{--jaw:none!important;--flap:none!important;--tilt:none!important}.ori-pupil{transition:none}}
+
+/* Secciones */
+section{scroll-margin-top:90px}
+.band{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec{padding:88px 0}
+.sec-head{display:grid;gap:12px;max-width:46rem;margin-bottom:40px}
+.sec-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem)}
+.sec-head p{color:var(--muted)}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.card h3{font-size:1.2rem}
+.card p{color:var(--muted);font-size:1rem}
+.ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3)}
+.ico svg{width:24px;height:24px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.steps li{display:grid;gap:10px;border-top:2px solid var(--line-2);padding-top:20px}
+.steps li:first-child{border-top-color:var(--cyan)}
+.steps .n{font-family:var(--f-mono);color:var(--cyan-2)}
+.steps h3{font-size:1.35rem}
+.steps p{color:var(--muted)}
+
+/* Planes */
+.plans{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.plan.featured{background:var(--surface-2);border:2px solid var(--cyan)}
+.plan .top-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.plan h3{font-size:1.4rem}
+.plan .for{color:var(--muted);font-size:.95rem}
+.badge{font-family:var(--f-mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;background:var(--cyan);color:#04111D;padding:4px 10px;border-radius:999px}
+.price{font-family:var(--f-display);font-weight:800;font-size:2.4rem;color:var(--fg);line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--f-body);font-size:.95rem;font-weight:500;color:var(--muted)}
+.price .cop{font-size:.9rem;color:var(--muted);font-weight:600;margin-left:4px}
+.plan ul{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--silver)}
+.plan .btn{margin-top:auto;width:100%}
+.plans-note{margin-top:20px;color:var(--muted);font-size:.92rem}
+
+/* Contacto */
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px}
+.contact dl{display:grid;gap:14px;margin:24px 0 0}
+.contact dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.contact dd{margin:2px 0 0;color:var(--fg)}
+form.qform{background:var(--surface);border:1px solid var(--line-2);border-radius:20px;padding:30px;display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font-size:.92rem;color:var(--silver)}
+input,select,textarea{width:100%;background:rgba(8,17,31,.7);border:1px solid var(--line-2);color:var(--fg);border-radius:12px;padding:.8em .95em;font:400 1rem var(--f-body);min-height:48px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(6,182,212,.22)}
+.form-msg{font-size:.9rem;color:var(--muted);min-height:1.4em}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+footer .slogan{font-family:var(--f-mono);letter-spacing:.08em;font-size:.8rem}
+
+/* Chat con ORI */
+.chat-fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:10px;border:1px solid rgba(245,181,68,.45);background:var(--surface);color:var(--fg);border-radius:999px;padding:5px 16px 5px 5px;cursor:pointer;font:700 .92rem var(--f-body);box-shadow:0 12px 30px -10px rgba(0,0,0,.8)}
+.chat-fab .mini{width:46px;height:46px;border-radius:50%;background:var(--bg-2);overflow:hidden;display:grid;place-items:center}
+.chat-fab .mini svg{width:44px;height:58px;margin-top:10px}
+.chat{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;width:min(390px,calc(100vw - 24px));height:min(590px,calc(100vh - 100px));display:flex;flex-direction:column;background:var(--bg-2);border:1px solid var(--line-2);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.85)}
+.chat[hidden],.chat-fab[hidden]{display:none}
+.chat-h{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.chat-h .av{width:52px;height:52px;border-radius:50%;background:var(--bg);overflow:hidden;flex:none;display:grid;place-items:center}
+.chat-h .av svg{width:50px;height:66px;margin-top:12px}
+.chat-h .who{flex:1;min-width:0}
+.chat-h b{display:block;font-family:var(--f-display);font-size:1.1rem;color:var(--fg)}
+.chat-h .state{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.chat-h .state i{width:8px;height:8px;border-radius:50%;background:#4ADE80}
+.chat-h .state.busy i{background:var(--warn)}
+.chat-h .ctrl{display:flex;gap:6px}
+.chat-h .ctrl button{width:40px;height:40px;display:grid;place-items:center;background:none;border:1px solid var(--line-2);color:var(--silver);border-radius:10px;cursor:pointer}
+.chat-h .ctrl button svg{width:18px;height:18px}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:88%;padding:9px 12px;border-radius:14px;font-size:.93rem;line-height:1.5;white-space:pre-line}
+.m.ori{align-self:flex-start;background:rgba(245,181,68,.08);border:1px solid rgba(245,181,68,.35);border-bottom-left-radius:4px}
+.m.ori::before{content:"ORI · ";font-weight:700;color:var(--warn)}
+.m.me{align-self:flex-end;background:var(--surface-2);border:1px solid var(--line-2);border-bottom-right-radius:4px;color:var(--fg)}
+.m .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.m .acts a,.m .acts button{font:600 .82rem var(--f-body);border-radius:999px;padding:.45em .9em;border:1px solid var(--line-2);background:var(--bg);color:var(--fg);text-decoration:none;cursor:pointer}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;border-radius:14px;background:rgba(245,181,68,.08);border:1px solid rgba(245,181,68,.3)}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--warn);animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.quick{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;border-top:1px solid var(--line)}
+.quick button{flex:none;background:none;border:1px solid var(--line-2);color:var(--silver);border-radius:999px;padding:.45em .9em;font:500 .82rem var(--f-body);cursor:pointer;min-height:36px}
+.quick button:hover{border-color:var(--warn);color:#fff}
+.chat form{display:flex;gap:8px;padding:10px 12px 12px;border-top:1px solid var(--line)}
+.chat form input{flex:1;min-width:0}
+.chat form button{flex:none;width:48px;height:48px;border-radius:12px;border:0;background:var(--warn);color:#1B1203;cursor:pointer;display:grid;place-items:center}
+.chat form button svg{width:20px;height:20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
 <body>
-<div style="background: #07080D; color: #E8EAF2; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; min-height: 100vh">
 
-<header style="border-bottom: 1px solid #1C2030; background: #07080D">
-<nav aria-label="Principal" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<a href="#inicio" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF">
-<svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="16" stroke="#C9CEDA" stroke-width="1.5"></circle><ellipse cx="18" cy="18" rx="16" ry="6" stroke="#7B86FF" stroke-width="1.5" transform="rotate(-30 18 18)"></ellipse><circle cx="18" cy="18" r="5" fill="#7B86FF"></circle></svg>
-<span style="font-family: 'Sora', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.08em">ORION CORE</span>
-</a>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px">
-<a href="#servicios" style="color: #C9CEDA; text-decoration: none">Servicios</a>
-<a href="#como-funciona" style="color: #C9CEDA; text-decoration: none">Cómo funciona</a>
-<a href="#planes" style="color: #C9CEDA; text-decoration: none">Planes</a>
-<a href="#contacto" style="color: #07080D; background: #7B86FF; text-decoration: none; font-weight: 600; padding: 10px 18px; border-radius: 8px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Solicitar diagnóstico</a>
-</div>
-</nav>
+<!-- ORI: el búho de conocimiento y seguridad de Orion Nova (mismo diseño de la página principal) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-owl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5e3a"/><stop offset="1" stop-color="#5a3a22"/></linearGradient>
+    <linearGradient id="g-hood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2340"/><stop offset="1" stop-color="#0b0f1f"/></linearGradient>
+    <radialGradient id="g-iris" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#9fe3ff"/><stop offset=".5" stop-color="#2f86ff"/><stop offset="1" stop-color="#123a9a"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="ori" viewBox="0 0 260 340">
+      <ellipse cx="130" cy="330" rx="80" ry="8" fill="#000" opacity=".45"/>
+      <path d="M44 330 Q36 214 130 186 Q224 214 216 330 Z" fill="url(#g-hood)"/>
+      <path d="M96 200 Q130 270 164 200 Q150 192 130 190 Q110 192 96 200 Z" fill="#d6b88e"/>
+      <path d="M108 212 q8 6 16 0 M136 212 q8 6 16 0 M118 232 q12 7 24 0" stroke="#a9845b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M96 200 Q130 280 164 200" fill="none" stroke="#2a3460" stroke-width="6"/>
+      <circle cx="176" cy="262" r="15" fill="none" stroke="#53c6ff" stroke-width="4" filter="url(#glow)"/>
+      <circle cx="176" cy="262" r="5" fill="#53c6ff"/>
+      <text x="176" y="300" text-anchor="middle" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="18" fill="#cdd4e6" letter-spacing="1">ORI</text>
+      <path class="ori-wing" d="M50 300 Q30 250 60 222 Q74 260 72 304 Z" fill="url(#g-owl)"/>
+      <g class="ori-head">
+        <path class="ori-tuft" d="M64 70 L50 18 L98 52 Z" fill="#6b4529"/>
+        <path class="ori-tuft" d="M196 70 L210 18 L162 52 Z" fill="#6b4529"/>
+        <ellipse cx="130" cy="112" rx="92" ry="80" fill="url(#g-owl)"/>
+        <path d="M130 70 Q60 56 52 116 Q56 168 130 170 Q204 168 208 116 Q200 56 130 70 Z" fill="#c99d6c"/>
+        <path d="M130 74 L130 96" stroke="#8a5e3a" stroke-width="4" stroke-linecap="round"/>
+        <path class="ori-brow" d="M70 80 Q96 64 120 84" stroke="#4a2f1b" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path class="ori-brow" d="M140 84 Q164 64 190 80" stroke="#4a2f1b" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <g class="blink late"><circle cx="96" cy="116" r="28" fill="#f4efe6"/><g class="ori-pupil"><circle cx="98" cy="118" r="18" fill="url(#g-iris)"/><circle cx="98" cy="118" r="8" fill="#050816"/><circle cx="92" cy="111" r="4.5" fill="#fff"/></g></g>
+        <g class="blink late"><circle cx="164" cy="116" r="28" fill="#f4efe6"/><g class="ori-pupil"><circle cx="162" cy="118" r="18" fill="url(#g-iris)"/><circle cx="162" cy="118" r="8" fill="#050816"/><circle cx="156" cy="111" r="4.5" fill="#fff"/></g></g>
+        <g filter="url(#glow)">
+          <circle cx="164" cy="116" r="35" fill="none" stroke="#53c6ff" stroke-width="4"/>
+          <g class="ring-spin ori-ring"><circle cx="164" cy="116" r="41" fill="none" stroke="#53c6ff" stroke-width="2" stroke-dasharray="6 9" opacity=".8"/></g>
+          <path d="M199 116 H222 L230 128" stroke="#53c6ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="230" cy="128" r="3.5" fill="#53c6ff"/>
+        </g>
+        <path class="ori-jaw" d="M123 150 L137 150 L130 165 Z" fill="#c98a24"/>
+        <path d="M120 140 Q130 134 140 140 L130 156 Z" fill="#e3a43a"/>
+        <path d="M120 140 Q130 134 140 140" stroke="#b97b1e" stroke-width="2" fill="none"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="ORION CORE, ir al inicio">
+      <img src="assets/logo-orion-nova.png" alt="" width="462" height="407">
+      <span class="wordmark"><span class="wm-1">ORION <b>CORE</b></span><span class="wm-2">por Orion Nova Technologies</span></span>
+    </a>
+    <nav class="main" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#planes">Planes</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-primary" href="#contacto">Solicitar diagnóstico</a>
+    </nav>
+  </div>
 </header>
 
-<section id="inicio" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
-<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #AEB6FF">ORION NOVA TECHNOLOGIES · CIBERSEGURIDAD</p>
-<h1 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.2vw, 4.2rem); line-height: 1.05; letter-spacing: -0.02em; color: #FFFFFF">El núcleo que protege tu negocio digital.</h1>
-<p style="margin: 0; font-size: 19px; color: #A3A9BC; max-width: 34rem">ORION CORE vigila tus páginas web, aplicaciones y datos, detecta amenazas a tiempo y te dice en lenguaje claro qué hacer. Seguridad empresarial pensada para negocios de Colombia.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
-<a href="#contacto" style="background: #7B86FF; color: #07080D; text-decoration: none; font-weight: 600; padding: 14px 24px; border-radius: 10px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Solicitar diagnóstico gratis</a>
-<a href="#servicios" style="border: 1px solid #3A4058; color: #E8EAF2; text-decoration: none; font-weight: 500; padding: 14px 24px; border-radius: 10px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Ver servicios</a>
-</div>
-</div>
+<main id="inicio">
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">Orion Nova Technologies · Ciberseguridad</p>
+      <h1>El núcleo que protege tu <span>negocio digital</span>.</h1>
+      <p class="lead">ORION CORE vigila tus páginas web, aplicaciones y datos, detecta amenazas a tiempo y te dice en lenguaje claro qué hacer. Seguridad empresarial pensada para negocios de Colombia.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contacto">Solicitar diagnóstico gratis</a>
+        <button class="btn btn-ori" type="button" data-open-chat>Pregúntale a ORI</button>
+      </div>
+    </div>
 
-<div style="flex: 1 1 420px; min-width: 0; background: #0E1018; border: 1px solid #232738; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A3A9BC">panel · ejemplo</span>
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #07080D; background: #7EE0B4; padding: 4px 10px; border-radius: 999px; font-weight: 600">PROTEGIDO</span>
-</div>
-<svg viewBox="0 0 360 180" role="img" aria-label="Ilustración del núcleo de ORION CORE rodeado por capas de protección" style="width: 100%; height: auto">
-<circle cx="180" cy="90" r="78" fill="none" stroke="#232738" stroke-width="1"></circle>
-<circle cx="180" cy="90" r="56" fill="none" stroke="#3A4058" stroke-width="1" stroke-dasharray="4 6"></circle>
-<ellipse cx="180" cy="90" rx="150" ry="34" fill="none" stroke="#7B86FF" stroke-width="1.5" transform="rotate(-14 180 90)"></ellipse>
-<circle cx="180" cy="90" r="30" fill="#151830" stroke="#7B86FF" stroke-width="2"></circle>
-<path d="M180 74 L194 80 V91 C194 100 188 106 180 109 C172 106 166 100 166 91 V80 Z" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"></path>
-<path d="M174 90 L178.5 94.5 L187 86" fill="none" stroke="#7EE0B4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-<circle cx="322" cy="54" r="5" fill="#C9CEDA"></circle>
-<circle cx="40" cy="126" r="5" fill="#C9CEDA"></circle>
-</svg>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 14px">
-<li style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #1C2030; padding-top: 10px"><span style="color: #C9CEDA">Firewall de aplicación web</span><span style="color: #7EE0B4">activo</span></li>
-<li style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #1C2030; padding-top: 10px"><span style="color: #C9CEDA">Certificado SSL</span><span style="color: #7EE0B4">vigente</span></li>
-<li style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #1C2030; padding-top: 10px"><span style="color: #C9CEDA">Copia de seguridad</span><span style="color: #7EE0B4">al día</span></li>
-<li style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #1C2030; padding-top: 10px"><span style="color: #C9CEDA">Intentos de acceso sospechosos</span><span style="color: #FFC27A">en revisión</span></li>
-</ul>
-</div>
-</section>
+    <div class="stage">
+      <span class="tag-c">Panel · ejemplo</span>
+      <button class="character ori-host float" id="heroOri" type="button" aria-label="ORI, el búho de seguridad. Tócalo para un consejo">
+        <span class="bubble" id="oriSay" aria-live="polite">¡Hola! Soy <b>ORI</b>, el guardián de ORION CORE. Tócame y te doy un consejo de seguridad.</span>
+        <svg viewBox="0 0 260 340" role="img" aria-label="ORI, el búho de Orion Nova"><use href="#ori"/></svg>
+        <span class="tag">ORI · seguridad</span>
+      </button>
+      <div style="display:grid;gap:12px;align-self:center">
+        <span class="status-pill">● PROTEGIDO</span>
+        <ul class="checks">
+          <li><span>Firewall web</span><span class="st-ok">activo</span></li>
+          <li><span>Certificado SSL</span><span class="st-ok">vigente</span></li>
+          <li><span>Copia de seguridad</span><span class="st-ok">al día</span></li>
+          <li><span>Accesos sospechosos</span><span class="st-warn">en revisión</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<section id="servicios" style="background: #0B0D14; border-top: 1px solid #1C2030; border-bottom: 1px solid #1C2030">
-<div style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 46rem">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #AEB6FF">SERVICIOS</p>
-<h2 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.15; color: #FFFFFF">Cuatro capas de protección, un solo núcleo.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+  <section id="servicios" class="band">
+    <div class="wrap sec">
+      <div class="sec-head">
+        <p class="eyebrow">Servicios</p>
+        <h2>Cuatro capas de protección, un solo núcleo.</h2>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>Monitoreo 24/7</h3>
+          <p>Vigilancia continua de tu web y servidores. Si algo raro pasa, recibes una alerta con lo que significa y cómo actuar.</p>
+        </article>
+        <article class="card">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v3l2 2"/></svg></span>
+          <h3>Auditoría de vulnerabilidades</h3>
+          <p>Revisamos tus sistemas buscando puntos débiles antes que los atacantes, y te entregamos un informe priorizado.</p>
+        </article>
+        <article class="card">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <h3>Protección de webs y apps</h3>
+          <p>Firewall, certificados, control de accesos y copias de seguridad para tus páginas y aplicaciones móviles.</p>
+        </article>
+        <article class="card">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M7 9v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg></span>
+          <h3>Capacitación del equipo</h3>
+          <p>Talleres prácticos para que tus empleados reconozcan correos falsos, estafas y malas prácticas con contraseñas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7B86FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 20px; color: #FFFFFF">Monitoreo 24/7</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 16px">Vigilancia continua de tu web y servidores. Si algo raro pasa, recibes una alerta con lo que significa y cómo actuar.</p>
-</article>
+  <section id="como-funciona" class="wrap sec">
+    <div class="sec-head">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>De expuesto a protegido en tres pasos.</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Diagnóstico</h3><p>Analizamos tu web, tus apps y cómo trabaja tu equipo para encontrar los riesgos reales de tu negocio.</p></li>
+      <li><span class="n">02</span><h3>Blindaje</h3><p>Corregimos las fallas encontradas y activamos las capas de protección que tu negocio necesita.</p></li>
+      <li><span class="n">03</span><h3>Vigilancia continua</h3><p>ORION CORE queda vigilando y te enviamos un reporte mensual claro, sin tecnicismos.</p></li>
+    </ol>
+  </section>
 
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7B86FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path><path d="M11 8v3l2 2"></path></svg>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 20px; color: #FFFFFF">Auditoría de vulnerabilidades</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 16px">Revisamos tus sistemas buscando puntos débiles antes que los atacantes, y te entregamos un informe priorizado.</p>
-</article>
+  <section id="planes" class="band">
+    <div class="wrap sec">
+      <div class="sec-head">
+        <p class="eyebrow">Planes</p>
+        <h2>Un plan para cada tamaño de negocio.</h2>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <h3>Esencial</h3>
+          <p class="for">Para emprendedores con una página web.</p>
+          <p class="price">$90.000<span class="cop">COP</span> <small>/ mes</small></p>
+          <ul>
+            <li>Monitoreo de 1 sitio web</li>
+            <li>Certificado SSL y copias de seguridad</li>
+            <li>Alertas por correo</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacto" data-plan="Esencial">Elegir Esencial</a>
+        </article>
+        <article class="plan featured">
+          <div class="top-row"><h3>Empresarial</h3><span class="badge">RECOMENDADO</span></div>
+          <p class="for">Para negocios con web, app y equipo de trabajo.</p>
+          <p class="price">$180.000<span class="cop">COP</span> <small>/ mes</small></p>
+          <ul>
+            <li>Todo lo del plan Esencial</li>
+            <li>Monitoreo 24/7 de webs y apps</li>
+            <li>Auditoría de vulnerabilidades trimestral</li>
+            <li>Alertas por WhatsApp y correo</li>
+          </ul>
+          <a class="btn btn-primary" href="#contacto" data-plan="Empresarial">Elegir Empresarial</a>
+        </article>
+        <article class="plan">
+          <h3>Corporativo</h3>
+          <p class="for">Para organizaciones con varias sedes o sistemas.</p>
+          <p class="price">$280.000<span class="cop">COP</span> <small>/ mes</small></p>
+          <ul>
+            <li>Todo lo del plan Empresarial</li>
+            <li>Capacitación del equipo</li>
+            <li>Respuesta prioritaria ante incidentes</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacto" data-plan="Corporativo">Elegir Corporativo</a>
+        </article>
+      </div>
+      <p class="plans-note">¿Dudas sobre cuál elegir? <button class="btn btn-ghost" type="button" data-open-chat data-ask="¿Qué plan me conviene?" style="min-height:40px;padding:.4em 1em;margin-left:6px">Pregúntale a ORI</button></p>
+    </div>
+  </section>
 
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7B86FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 20px; color: #FFFFFF">Protección de webs y apps</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 16px">Firewall, certificados, control de accesos y copias de seguridad para tus páginas y aplicaciones móviles.</p>
-</article>
+  <section id="contacto" class="wrap sec contact">
+    <div>
+      <p class="eyebrow">Contacto</p>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:12px">Pide tu diagnóstico de seguridad.</h2>
+      <p style="color:var(--muted);margin-top:14px">Cuéntanos de tu negocio. Al enviar, se abre WhatsApp con tu mensaje listo para que nos lo mandes.</p>
+      <dl>
+        <div><dt>WhatsApp</dt><dd><a href="https://wa.me/573004440009" target="_blank" rel="noopener">+57 300 444 0009</a></dd></div>
+        <div><dt>Correo</dt><dd><a href="mailto:orion.nova.techno@gmail.com">orion.nova.techno@gmail.com</a></dd></div>
+        <div><dt>Ubicación</dt><dd>Neiva, Huila · Colombia</dd></div>
+      </dl>
+    </div>
+    <form class="qform" id="qform" novalidate>
+      <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre" required></div>
+      <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" placeholder="Nombre de tu negocio"></div>
+      <div class="field"><label for="f-plan">Plan de interés</label>
+        <select id="f-plan" name="plan">
+          <option value="Aún no sé">Aún no sé</option>
+          <option value="Esencial">Esencial · $90.000/mes</option>
+          <option value="Empresarial">Empresarial · $180.000/mes</option>
+          <option value="Corporativo">Corporativo · $280.000/mes</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-mensaje">¿Qué quieres proteger?</label><textarea id="f-mensaje" name="mensaje" rows="4" placeholder="Mi página web, mi app, los correos del equipo…"></textarea></div>
+      <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+      <p class="form-msg" id="formMsg" role="status"></p>
+    </form>
+  </section>
+</main>
 
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7B86FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4z"></path><path d="M7 9v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"></path></svg>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 20px; color: #FFFFFF">Capacitación del equipo</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 16px">Talleres prácticos para que tus empleados reconozcan correos falsos, estafas y malas prácticas con contraseñas.</p>
-</article>
-
-</div>
-</div>
-</section>
-
-<section id="como-funciona" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 46rem">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #AEB6FF">CÓMO FUNCIONA</p>
-<h2 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.15; color: #FFFFFF">De expuesto a protegido en tres pasos.</h2>
-</div>
-<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px">
-<li style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #7B86FF; padding-top: 20px">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #AEB6FF">01</span>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Diagnóstico</h3>
-<p style="margin: 0; color: #A3A9BC">Analizamos tu web, tus apps y cómo trabaja tu equipo para encontrar los riesgos reales de tu negocio.</p>
-</li>
-<li style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #3A4058; padding-top: 20px">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #AEB6FF">02</span>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Blindaje</h3>
-<p style="margin: 0; color: #A3A9BC">Corregimos las fallas encontradas y activamos las capas de protección que tu negocio necesita.</p>
-</li>
-<li style="display: flex; flex-direction: column; gap: 10px; border-top: 2px solid #3A4058; padding-top: 20px">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #AEB6FF">03</span>
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Vigilancia continua</h3>
-<p style="margin: 0; color: #A3A9BC">ORION CORE queda vigilando y te enviamos un reporte mensual claro, sin tecnicismos.</p>
-</li>
-</ol>
-</section>
-
-<section id="planes" style="background: #0B0D14; border-top: 1px solid #1C2030; border-bottom: 1px solid #1C2030">
-<div style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 46rem">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #AEB6FF">PLANES</p>
-<h2 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.15; color: #FFFFFF">Un plan para cada tamaño de negocio.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; align-items: stretch">
-
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Esencial</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 15px">Para emprendedores con una página web.</p>
-<p style="margin: 0; font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 700; color: #FFFFFF">[TU PRECIO] <span style="font-size: 15px; font-weight: 400; color: #A3A9BC">/ mes</span></p>
-<ul style="margin: 0; padding-left: 20px; color: #C9CEDA; display: flex; flex-direction: column; gap: 8px; font-size: 16px">
-<li>Monitoreo de 1 sitio web</li>
-<li>Certificado SSL y copias de seguridad</li>
-<li>Alertas por correo</li>
-</ul>
-<a href="#contacto" style="margin-top: auto; border: 1px solid #3A4058; color: #E8EAF2; text-decoration: none; text-align: center; font-weight: 600; padding: 12px; border-radius: 10px; min-height: 48px; box-sizing: border-box; display: flex; align-items: center; justify-content: center">Elegir Esencial</a>
-</article>
-
-<article style="background: #141733; border: 2px solid #7B86FF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Empresa</h3>
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; background: #7B86FF; color: #07080D; padding: 4px 10px; border-radius: 999px; font-weight: 600">RECOMENDADO</span>
-</div>
-<p style="margin: 0; color: #B9BED0; font-size: 15px">Para negocios con web, app y equipo de trabajo.</p>
-<p style="margin: 0; font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 700; color: #FFFFFF">[TU PRECIO] <span style="font-size: 15px; font-weight: 400; color: #B9BED0">/ mes</span></p>
-<ul style="margin: 0; padding-left: 20px; color: #D6DAE6; display: flex; flex-direction: column; gap: 8px; font-size: 16px">
-<li>Todo lo del plan Esencial</li>
-<li>Monitoreo 24/7 de webs y apps</li>
-<li>Auditoría de vulnerabilidades trimestral</li>
-<li>Alertas por WhatsApp y correo</li>
-</ul>
-<a href="#contacto" style="margin-top: auto; background: #7B86FF; color: #07080D; text-decoration: none; text-align: center; font-weight: 600; padding: 12px; border-radius: 10px; min-height: 48px; box-sizing: border-box; display: flex; align-items: center; justify-content: center">Elegir Empresa</a>
-</article>
-
-<article style="background: #10121B; border: 1px solid #232738; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<h3 style="margin: 0; font-family: 'Sora', sans-serif; font-size: 22px; color: #FFFFFF">Corporativo</h3>
-<p style="margin: 0; color: #A3A9BC; font-size: 15px">Para organizaciones con varias sedes o sistemas.</p>
-<p style="margin: 0; font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 700; color: #FFFFFF">A la medida</p>
-<ul style="margin: 0; padding-left: 20px; color: #C9CEDA; display: flex; flex-direction: column; gap: 8px; font-size: 16px">
-<li>Todo lo del plan Empresa</li>
-<li>Capacitación del equipo</li>
-<li>Respuesta prioritaria ante incidentes</li>
-</ul>
-<a href="#contacto" style="margin-top: auto; border: 1px solid #3A4058; color: #E8EAF2; text-decoration: none; text-align: center; font-weight: 600; padding: 12px; border-radius: 10px; min-height: 48px; box-sizing: border-box; display: flex; align-items: center; justify-content: center">Hablar con ventas</a>
-</article>
-
-</div>
-</div>
-</section>
-
-<section id="contacto" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 48px">
-<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
-<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #AEB6FF">CONTACTO</p>
-<h2 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.15; color: #FFFFFF">Pide tu diagnóstico de seguridad.</h2>
-<p style="margin: 0; color: #A3A9BC">Cuéntanos de tu negocio y te contactamos para revisar cómo está protegido hoy.</p>
-<p style="margin: 0; color: #C9CEDA; font-size: 16px">Neiva, Huila · Colombia<br>[TU CORREO] · [TU WHATSAPP]</p>
-</div>
-<form style="flex: 1 1 420px; min-width: 0; background: #10121B; border: 1px solid #232738; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
-<div style="display: flex; flex-direction: column; gap: 6px">
-<label for="oc-nombre" style="font-size: 15px; color: #C9CEDA">Nombre</label>
-<input id="oc-nombre" type="text" placeholder="Tu nombre" style="background: #07080D; border: 1px solid #3A4058; color: #E8EAF2; border-radius: 8px; padding: 12px 14px; font: inherit; font-size: 16px; min-height: 48px; box-sizing: border-box">
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<label for="oc-empresa" style="font-size: 15px; color: #C9CEDA">Empresa</label>
-<input id="oc-empresa" type="text" placeholder="Nombre de tu negocio" style="background: #07080D; border: 1px solid #3A4058; color: #E8EAF2; border-radius: 8px; padding: 12px 14px; font: inherit; font-size: 16px; min-height: 48px; box-sizing: border-box">
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<label for="oc-correo" style="font-size: 15px; color: #C9CEDA">Correo</label>
-<input id="oc-correo" type="email" placeholder="tu@correo.com" style="background: #07080D; border: 1px solid #3A4058; color: #E8EAF2; border-radius: 8px; padding: 12px 14px; font: inherit; font-size: 16px; min-height: 48px; box-sizing: border-box">
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<label for="oc-mensaje" style="font-size: 15px; color: #C9CEDA">¿Qué quieres proteger?</label>
-<textarea id="oc-mensaje" rows="4" placeholder="Mi página web, mi app, los correos del equipo…" style="background: #07080D; border: 1px solid #3A4058; color: #E8EAF2; border-radius: 8px; padding: 12px 14px; font: inherit; font-size: 16px; resize: vertical"></textarea>
-</div>
-<button type="button" style="background: #7B86FF; color: #07080D; border: 0; font: inherit; font-weight: 600; padding: 14px; border-radius: 10px; min-height: 48px; cursor: pointer">Enviar solicitud</button>
-</form>
-</section>
-
-<footer style="border-top: 1px solid #1C2030">
-<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 14px; color: #A3A9BC">
-<span>ORION CORE es un producto de Orion Nova Technologies</span>
-<span style="font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em">Innovamos · Desarrollamos · Conectamos</span>
-</div>
+<footer>
+  <div class="wrap">
+    <span>ORION CORE es un producto de <a href="https://orion-nova-technologies-s-a-s.github.io/orion-master-plan/">Orion Nova Technologies</a></span>
+    <span class="slogan">Innovamos · Desarrollamos · Conectamos</span>
+  </div>
 </footer>
 
-</div>
+<!-- Chat con ORI -->
+<button class="chat-fab" id="chatFab" type="button" data-open-chat aria-label="Abrir el chat con ORI">
+  <span class="mini ori-host" aria-hidden="true"><svg viewBox="0 0 260 340"><use href="#ori"/></svg></span>
+  Pregúntale a ORI
+</button>
+
+<section class="chat" id="chat" hidden aria-label="Chat con ORI">
+  <div class="chat-h">
+    <span class="av ori-host" id="chatAv" aria-hidden="true"><svg viewBox="0 0 260 340"><use href="#ori"/></svg></span>
+    <div class="who"><b>ORI</b><span class="state" id="chatState"><i></i><span>En línea</span></span></div>
+    <div class="ctrl">
+      <button type="button" id="voiceBtn" aria-pressed="true"></button>
+      <button type="button" id="closeChat" aria-label="Cerrar el chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="quick" id="quick">
+    <button type="button">Planes y precios</button>
+    <button type="button">¿Qué servicios tienen?</button>
+    <button type="button">¿Cómo funciona?</button>
+    <button type="button">Dame un consejo</button>
+    <button type="button">Me hackearon</button>
+    <button type="button">Hablar con un asesor</button>
+  </div>
+  <form id="chatForm" autocomplete="off">
+    <label class="sr" for="chatInput">Escribe tu mensaje para ORI</label>
+    <input id="chatInput" placeholder="Escríbele a ORI…" maxlength="300">
+    <button type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const WA="573004440009", MAIL="orion.nova.techno@gmail.com";
+  const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- ORI con vida: mirada, pico, alas y cejas ---------- */
+  function oriDo(act){
+    const cls={flap:"ori-flap",scan:"ori-scan",alert:"ori-alert",tilt:"tilt"}[act]; if(!cls) return;
+    $$(".ori-host").forEach(h=>{ h.classList.remove(cls); void h.getBoundingClientRect(); h.classList.add(cls);
+      clearTimeout(h["_t"+act]); h["_t"+act]=setTimeout(()=>h.classList.remove(cls),act==="flap"?1400:act==="tilt"?900:2600); });
+  }
+  // sus ojos siguen el puntero
+  addEventListener("pointermove",e=>{ $$(".ori-host").forEach(h=>{ const r=h.getBoundingClientRect(); if(!r.width||r.bottom<0||r.top>innerHeight) return;
+    const dx=(e.clientX-(r.left+r.width/2))/innerWidth, dy=(e.clientY-(r.top+r.height*.35))/innerHeight;
+    h.style.setProperty("--ox",Math.max(-1,Math.min(1,dx*2.6)).toFixed(2)); h.style.setProperty("--oy",Math.max(-1,Math.min(1,dy*2.6)).toFixed(2)); }); },{passive:true});
+  // vigila solo: de vez en cuando escanea, aletea, mira o se pone alerta
+  if(!reduced) (function idle(){ setTimeout(()=>{ if(!document.hidden){ const a=["scan","flap","alert","look"][Math.floor(Math.random()*4)];
+      if(a==="look"){ const x=(Math.random()*2-1).toFixed(2), y=(Math.random()*1.2-.6).toFixed(2); $$(".ori-host").forEach(h=>{ h.style.setProperty("--ox",x); h.style.setProperty("--oy",y); }); } else oriDo(a); }
+    idle(); },6000+Math.random()*5000); })();
+
+  /* ---------- voz de ORI ---------- */
+  const VOICE={on:true,voices:[]};
+  try{ VOICE.on=localStorage.getItem("orioncore.voz")!=="off"; }catch(e){}
+  const hasTTS=()=>!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
+  function loadVoices(){ try{ VOICE.voices=(speechSynthesis.getVoices()||[]).filter(v=>/^es/i.test(v.lang)); }catch(e){ VOICE.voices=[]; } }
+  if(hasTTS()){ loadVoices(); try{ speechSynthesis.addEventListener("voiceschanged",loadVoices); }catch(e){} }
+  function pickVoice(){ let best=null,bs=-1e9;
+    VOICE.voices.forEach(v=>{ const l=v.lang.replace("_","-").toLowerCase(); let s=l==="es-co"?30:l==="es-mx"?26:l==="es-us"?24:l==="es-419"?22:12;
+      if(/natural|neural|online/i.test(v.name)) s+=8; if(s>bs){ bs=s; best=v; } }); return best; }
+  function setTalking(on){ $$(".ori-host").forEach(h=>h.classList.toggle("ori-talking",on)); setState(on?"Hablando…":"En línea",on); }
+  function setState(t,busy){ const st=$("#chatState"); st.classList.toggle("busy",!!busy); st.lastChild.textContent=t; }
+  function speakable(t){ return String(t).replace(/https?:\/\/\S+/g,"").replace(/\$\s?(\d{1,3})\.000/g,"$1 mil pesos").replace(/300 444 0009/g,"tres cero cero, cuatro cuatro cuatro, cero cero cero nueve").replace(/[•·→|]/g,",").replace(/\s+/g," ").trim(); }
+  let tok=0;
+  function stopSpeech(){ tok++; try{ if(hasTTS()) speechSynthesis.cancel(); }catch(e){} setTalking(false); }
+  function speak(text){
+    const my=++tok;
+    // sin voz: igual mueve el pico un momento
+    if(!VOICE.on||!hasTTS()||!VOICE.voices.length){ setTalking(true); setTimeout(()=>{ if(my===tok) setTalking(false); },Math.min(2800,400+String(text).length*28)); return; }
+    const parts=speakable(text).match(/[^.!?¿¡\n]+[.!?]?/g)||[], v=pickVoice(); let i=0;
+    try{ speechSynthesis.cancel(); }catch(e){}
+    (function next(){
+      if(my!==tok||i>=parts.length){ if(my===tok) setTalking(false); return; }
+      const s=parts[i++].trim(); if(s.length<2) return next();
+      const u=new SpeechSynthesisUtterance(s); if(v){ u.voice=v; u.lang=v.lang; } else u.lang="es-CO";
+      u.rate=1.08; u.pitch=1.45;
+      let ok=false; const guard=setTimeout(()=>{ if(!ok) setTalking(false); },2500);
+      u.onstart=()=>{ ok=true; clearTimeout(guard); setTalking(true); };
+      u.onend=()=>{ clearTimeout(guard); next(); };
+      u.onerror=()=>{ clearTimeout(guard); if(my===tok) setTalking(false); };
+      try{ speechSynthesis.speak(u); }catch(e){ clearTimeout(guard); }
+    })();
+  }
+  const ICO_ON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  const ICO_OFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l6 6M22 9l-6 6"/></svg>';
+  function paintVoice(){ const b=$("#voiceBtn"); if(!hasTTS()){ b.hidden=true; return; } b.innerHTML=VOICE.on?ICO_ON:ICO_OFF; b.setAttribute("aria-pressed",String(VOICE.on)); const l=VOICE.on?"Silenciar la voz de ORI":"Activar la voz de ORI"; b.setAttribute("aria-label",l); b.title=l; }
+  $("#voiceBtn").addEventListener("click",()=>{ VOICE.on=!VOICE.on; try{ localStorage.setItem("orioncore.voz",VOICE.on?"on":"off"); }catch(e){} if(!VOICE.on) stopSpeech(); else speak("Listo, vuelvo a hablar."); paintVoice(); });
+  paintVoice();
+
+  /* ---------- consejos de ORI en el héroe ---------- */
+  const tips=[
+    "Usa una contraseña distinta para cada cuenta. Si una se filtra, las demás siguen protegidas.",
+    "Activa la verificación en dos pasos en tu correo, tu banco y WhatsApp.",
+    "Desconfía de los mensajes que piden tus datos con urgencia. Así empiezan muchos fraudes.",
+    "Mantén actualizados tu celular, tu computador y los plugins de tu página web.",
+    "Haz copias de seguridad y guarda una fuera de tu computador. Así un ataque no te deja sin nada.",
+    "Antes de hacer clic, pasa el dedo o el cursor sobre el enlace y mira a dónde lleva realmente.",
+    "No uses redes Wi-Fi públicas para entrar a tu banco o a cuentas importantes."
+  ];
+  let ti=-1;
+  function nextTip(){ ti=(ti+1)%tips.length; return tips[ti]; }
+  $("#heroOri").addEventListener("click",()=>{ const t=nextTip(); $("#oriSay").innerHTML="<b>Consejo:</b> "+t; oriDo("tilt"); oriDo("flap"); speak(t); });
+
+  /* ---------- cerebro de ORI: respuestas sobre ORION CORE ---------- */
+  const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[¿?¡!.,;:]/g," ");
+  const waLink=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+  const toAsesor={label:"Escribir por WhatsApp",href:waLink("Hola, vengo de la página de ORION CORE y quiero hablar con un asesor.")};
+  const toPlanes={label:"Ver planes",go:"#planes"};
+  const toForm={label:"Pedir diagnóstico",go:"#contacto"};
+  const R=[
+    {k:/(hackea|hackearon|me robaron|virus|ransomware|secuestr|ataque|me atacaron|suplantaron|me clonaron|me entraron)/, alert:true, a:()=>["Tranquilo, actuemos rápido:\n1. Cambia ya las contraseñas de tu correo y cuentas importantes, desde un equipo que esté limpio.\n2. Activa la verificación en dos pasos.\n3. Desconecta de internet el equipo afectado, pero no lo apagues ni borres nada: sirve como evidencia.\n4. Avisa a tu banco si hay datos financieros de por medio.\nY escríbenos ya mismo para ayudarte.",[toAsesor]]},
+    {k:/(que plan|cual plan|me conviene|recomiend)/, a:()=>["Depende de tu negocio:\n• Solo tienes una página web → Esencial, $90.000 al mes.\n• Tienes web, app o un equipo trabajando → Empresarial, $180.000 al mes. Es el que más recomiendo.\n• Varias sedes o muchos sistemas → Corporativo, $280.000 al mes.\nSi me cuentas qué tienes, te digo cuál te sirve.",[toPlanes,toForm]]},
+    {k:/\besencial\b/, a:()=>["El plan Esencial cuesta $90.000 al mes. Incluye monitoreo de 1 sitio web, certificado SSL, copias de seguridad y alertas por correo. Ideal para emprendedores.",[toForm]]},
+    {k:/(empresarial|plan empresa\b)/, a:()=>["El plan Empresarial cuesta $180.000 al mes. Incluye todo lo del Esencial, monitoreo 24/7 de webs y apps, auditoría de vulnerabilidades cada trimestre y alertas por WhatsApp y correo.",[toForm]]},
+    {k:/corporativ/, a:()=>["El plan Corporativo cuesta $280.000 al mes. Incluye todo lo del Empresarial, capacitación de tu equipo y respuesta prioritaria ante incidentes.",[toForm]]},
+    {k:/(precio|plan|cuesta|cuanto|valor|tarifa|cobran|costo)/, a:()=>["Tenemos tres planes mensuales:\n• Esencial: $90.000\n• Empresarial: $180.000 (recomendado)\n• Corporativo: $280.000\nTodos en pesos colombianos. ¿Quieres que te cuente qué incluye cada uno?",[toPlanes]]},
+    {k:/(monitore|vigila|24\/7|24 7)/, a:()=>["Con el monitoreo vigilamos tu web y tus servidores todo el tiempo. Si pasa algo raro, te llega una alerta explicada en palabras simples, con lo que debes hacer. Viene en todos los planes."]},
+    {k:/(auditor|vulnerab|pentest|prueba de penetra|punto debil)/, a:()=>["En la auditoría buscamos puntos débiles en tus sistemas antes que los atacantes, y te entregamos un informe ordenado por prioridad. En el plan Empresarial se hace cada trimestre."]},
+    {k:/(capacita|taller|curso|emplead|equipo de trabajo)/, a:()=>["Damos talleres prácticos para que tu equipo reconozca correos falsos, estafas y malas prácticas con contraseñas. La mayoría de ataques empiezan por un clic de una persona. Viene en el plan Corporativo."]},
+    {k:/(servicio|que hacen|que ofrecen|que es orion core|orion core)/, a:()=>["ORION CORE es la línea de ciberseguridad de Orion Nova Technologies. Te protegemos en cuatro capas:\n• Monitoreo 24/7\n• Auditoría de vulnerabilidades\n• Protección de webs y apps\n• Capacitación de tu equipo",[toPlanes]]},
+    {k:/(como funciona|pasos|proceso|como empiezo|como empezar|empezar)/, a:()=>["Es en tres pasos:\n1. Diagnóstico: revisamos tu web, tus apps y cómo trabaja tu equipo.\n2. Blindaje: corregimos las fallas y activamos la protección.\n3. Vigilancia: ORION CORE queda vigilando y te mandamos un reporte mensual claro.",[toForm]]},
+    {k:/(diagnostico|revision|revisar mi)/, a:()=>["El diagnóstico es el primer paso: revisamos cómo está protegido tu negocio hoy y te decimos qué riesgos tienes. Déjanos tus datos y te contactamos.",[toForm,toAsesor]]},
+    {k:/(pagina web|sitio web|mi web|mi app|aplicacion|ssl|certificado|firewall|copia de seguridad|backup)/, a:()=>["Protegemos tus páginas y apps con firewall, certificado SSL, control de accesos y copias de seguridad. Así, si algo falla, tu negocio no se queda por fuera.",[toPlanes]]},
+    {k:/(contrasena|clave|password)/, a:()=>["Para tus contraseñas: usa frases largas, una distinta en cada cuenta, y guárdalas en un gestor de contraseñas. Y activa siempre la verificación en dos pasos."]},
+    {k:/(phishing|correo falso|estafa|fraude|enlace raro|link raro|mensaje raro)/, a:()=>["Señales de estafa: te meten afán, piden datos o claves, el remitente se ve raro o el enlace no lleva al sitio oficial. Ante la duda, no hagas clic y entra tú mismo a la página oficial."]},
+    {k:/(consejo|tip|recomendacion de seguridad|enseñame)/, a:()=>["Consejo: "+nextTip()]},
+    {k:/(asesor|humano|persona|whatsapp|telefono|celular|llamar|contacto|correo|email|hablar con)/, a:()=>["Con gusto. Puedes escribirnos por WhatsApp al +57 300 444 0009 o al correo "+MAIL+". Estamos en Neiva, Huila.",[toAsesor,{label:"Enviar correo",href:"mailto:"+MAIL+"?subject="+encodeURIComponent("Información ORION CORE")}]]},
+    {k:/(donde|ubicad|ciudad|neiva)/, a:()=>["Estamos en Neiva, Huila, Colombia. Atendemos a negocios de todo el país de forma remota."]},
+    {k:/(quien eres|como te llamas|eres un|que eres|\bori\b)/, a:()=>["Soy ORI, el búho de Orion Nova Technologies. Los búhos ven en la oscuridad, y yo vigilo lo que otros no ven: amenazas, accesos raros y fallas de seguridad."]},
+    {k:/(gracias|listo|perfecto|genial|ok\b|vale)/, a:()=>["¡Con gusto! Aquí sigo vigilando. Si necesitas algo más, me escribes."]},
+    {k:/\b(hola|buenas|buenos dias|buenas tardes|buenas noches|hey|saludos)\b/, a:()=>["¡Hola! Soy ORI, el búho guardián de ORION CORE. Te puedo contar de nuestros planes, servicios, cómo funciona o darte un consejo de seguridad. ¿Qué necesitas?"]},
+    {k:/(pago|pagar|factura|nequi|transferencia|tarjeta)/, a:()=>["Los detalles de pago te los da un asesor cuando elijas tu plan. Escríbenos y te ayudamos.",[toAsesor]]}
+  ];
+  function answer(q){
+    const n=" "+norm(q)+" ";
+    for(const r of R){ if(r.k.test(n)){ const [txt,acts]=r.a(); return {txt,acts,alert:!!r.alert}; } }
+    return {txt:"Mmm, eso no lo tengo claro todavía. Puedo contarte de planes y precios, servicios, cómo funciona, darte un consejo de seguridad o pasarte con un asesor.",acts:[toPlanes,toAsesor]};
+  }
+
+  /* ---------- chat ---------- */
+  const msgs=$("#msgs"); let opened=false, busy=0;
+  function add(who,text,acts){
+    const m=document.createElement("div"); m.className="m "+who; m.textContent=text;
+    if(acts&&acts.length){ const box=document.createElement("div"); box.className="acts";
+      acts.forEach(a=>{ let el;
+        if(a.href){ el=document.createElement("a"); el.href=a.href; if(/^https/.test(a.href)){ el.target="_blank"; el.rel="noopener"; } }
+        else { el=document.createElement("button"); el.type="button"; el.addEventListener("click",()=>{ closeChat(); const t=$(a.go); if(t) t.scrollIntoView({behavior:reduced?"auto":"smooth"}); }); }
+        el.textContent=a.label; box.appendChild(el); });
+      m.appendChild(box); }
+    msgs.appendChild(m); msgs.scrollTop=msgs.scrollHeight;
+  }
+  function oriReply(text,acts,alert){
+    clearTimeout(busy);
+    const t=document.createElement("div"); t.className="typing"; t.innerHTML="<i></i><i></i><i></i>"; msgs.appendChild(t); msgs.scrollTop=msgs.scrollHeight;
+    setState("Pensando…",true); oriDo(alert?"alert":"scan");
+    busy=setTimeout(()=>{ t.remove(); add("ori",text,acts); oriDo("flap"); speak(text); },reduced?150:650+Math.min(900,text.length*4));
+  }
+  function ask(q){ q=String(q||"").trim(); if(!q) return; add("me",q); const r=answer(q); oriReply(r.txt,r.acts,r.alert); }
+  function openChat(firstQ){
+    $("#chat").hidden=false; $("#chatFab").hidden=true;
+    const first=!opened; opened=true;
+    if(firstQ) ask(firstQ);
+    else if(first) oriReply("¡Hola! Soy ORI, el guardián de ORION CORE. Pregúntame por planes, servicios o seguridad. También te puedo dar consejos.",null);
+    setTimeout(()=>$("#chatInput").focus(),50);
+  }
+  function closeChat(){ $("#chat").hidden=true; $("#chatFab").hidden=false; stopSpeech(); $("#chatFab").focus(); }
+  $$("[data-open-chat]").forEach(b=>b.addEventListener("click",()=>openChat(b.dataset.ask)));
+  $("#closeChat").addEventListener("click",closeChat);
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("#chat").hidden) closeChat(); });
+  $("#chatForm").addEventListener("submit",e=>{ e.preventDefault(); const i=$("#chatInput"); ask(i.value); i.value=""; });
+  $$("#quick button").forEach(b=>b.addEventListener("click",()=>ask(b.textContent)));
+
+  /* ---------- botones de plan y formulario a WhatsApp ---------- */
+  $$("[data-plan]").forEach(a=>a.addEventListener("click",()=>{ $("#f-plan").value=a.dataset.plan; }));
+  $("#qform").addEventListener("submit",e=>{
+    e.preventDefault();
+    const f=e.currentTarget, nombre=f.nombre.value.trim(), msg=$("#formMsg");
+    if(!nombre){ msg.textContent="Escribe tu nombre para continuar."; f.nombre.focus(); return; }
+    const texto="Hola, soy "+nombre+(f.empresa.value.trim()?" de "+f.empresa.value.trim():"")+". Quiero el diagnóstico de seguridad de ORION CORE.\nPlan de interés: "+f.plan.value+(f.mensaje.value.trim()?"\nQuiero proteger: "+f.mensaje.value.trim():"");
+    window.open(waLink(texto),"_blank","noopener");
+    msg.textContent="Listo, se abrió WhatsApp con tu mensaje. Solo tienes que enviarlo.";
+  });
+})();
+</script>
 </body>
 </html>
