@@ -51,15 +51,16 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 .wm-1{font-family:var(--f-display);font-weight:800;font-size:1.15rem;letter-spacing:.1em;color:#E8EEF8}
 .wm-1 b{background:linear-gradient(90deg,var(--blue),var(--cyan-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .wm-2{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.24em;color:#8FA7D8;margin-top:4px;text-transform:uppercase}
-nav.main{display:flex;align-items:center;flex-wrap:wrap;gap:6px 26px;font-size:.95rem}
+nav.main{margin-left:auto;display:flex;align-items:center;flex-wrap:wrap;gap:6px 26px;font-size:.95rem}
 nav.main a{color:var(--silver);text-decoration:none}
 nav.main a:hover{color:#fff}
 nav.main .btn{color:#04111D;padding:.6em 1.1em;min-height:44px}
 @media (max-width:820px){nav.main a:not(.btn){display:none}}
+@media (max-width:560px){nav.main{display:none}header.top .wrap{flex-wrap:nowrap}}
 @media (max-width:420px){.brand img{height:44px}.wm-1{font-size:.95rem}.wm-2{font-size:.5rem}}
 
 /* Héroe */
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding:72px 0 88px}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding-block:72px 88px}
 .hero h1{font-weight:800;font-size:clamp(2.3rem,5vw,4rem);line-height:1.05;margin:18px 0}
 .hero h1 span{color:var(--cyan-2)}
 .hero .lead{font-size:1.15rem;color:var(--muted);max-width:34rem}
@@ -71,7 +72,7 @@ nav.main .btn{color:#04111D;padding:.6em 1.1em;min-height:44px}
 .checks li span:first-child{color:var(--silver)}
 .st-ok{color:#4ADE80}.st-warn{color:var(--warn)}
 .status-pill{display:inline-flex;align-items:center;gap:8px;justify-self:start;font-family:var(--f-mono);font-size:.75rem;font-weight:600;color:#04111D;background:#4ADE80;padding:4px 12px;border-radius:999px}
-@media (max-width:900px){.hero{grid-template-columns:1fr;padding:48px 0 64px}}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding-block:48px 64px}}
 @media (max-width:520px){.stage{grid-template-columns:1fr}.checks{margin-top:0}}
 
 /* ORI: el búho, animado (el mismo de la página principal) */
@@ -109,7 +110,7 @@ nav.main .btn{color:#04111D;padding:.6em 1.1em;min-height:44px}
 /* Secciones */
 section{scroll-margin-top:90px}
 .band{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.sec{padding:88px 0}
+.sec{padding-block:88px}
 .sec-head{display:grid;gap:12px;max-width:46rem;margin-bottom:40px}
 .sec-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem)}
 .sec-head p{color:var(--muted)}
@@ -157,6 +158,59 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);bo
 footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
 footer .slogan{font-family:var(--f-mono);letter-spacing:.08em;font-size:.8rem}
+
+/* Acceso: botón, menú de usuario y ventana de login */
+.actions{display:flex;align-items:center;gap:10px}
+.btn-login{min-height:44px;padding:.6em 1.1em;background:transparent;border:1px solid var(--line-2);color:var(--fg)}
+.btn-login:hover{border-color:var(--cyan);color:#fff}
+.btn-login svg{width:18px;height:18px}
+.umenu{position:relative}
+.ubtn{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line-2);border-radius:999px;padding:3px 12px 3px 3px;color:var(--fg);font:600 .92rem var(--f-body);cursor:pointer;min-height:44px}
+.ubtn svg{width:16px;height:16px;color:var(--muted)}
+.uav{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#04111D;font:800 1rem var(--f-display);flex:none}
+.udrop{position:absolute;right:0;top:calc(100% + 8px);width:min(300px,calc(100vw - 32px));background:var(--bg-2);border:1px solid var(--line-2);border-radius:16px;padding:14px;display:grid;gap:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);z-index:45}
+.udrop[hidden]{display:none}
+.udrop-head{display:flex;gap:12px;align-items:center}
+.udrop-head b{display:block;color:var(--fg);font-family:var(--f-display)}
+.udrop-head small{display:block;color:var(--muted);font-size:.82rem}
+.chip-role{display:inline-block;margin-top:6px;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .7em;border-radius:999px;border:1px solid var(--line-2);color:var(--silver)}
+.chip-role.admin{border-color:var(--warn);color:var(--warn)}
+.udrop a.item{display:flex;align-items:center;gap:8px;color:var(--silver);text-decoration:none;padding:.6em .5em;border-radius:10px;font-size:.92rem}
+.udrop a.item:hover{background:var(--surface);color:#fff}
+.udrop .btn{width:100%}
+@media (max-width:560px){.btn-login .lbl{display:none}.btn-login{padding:.6em .8em}.ubtn .nm{display:none}}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(3,8,16,.78);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;overflow-y:auto}
+.modal[hidden]{display:none}
+.dialog{width:min(860px,100%);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);background:var(--bg-2);border:1px solid var(--line-2);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,.8)}
+.dialog aside{background:radial-gradient(90% 70% at 50% 30%,var(--surface-2),var(--bg));padding:28px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;border-right:1px solid var(--line)}
+.dialog aside svg{width:min(190px,60%);height:auto}
+.dialog aside .bubble{margin:0}
+.dialog aside .bubble::after{display:none}
+.fine{font-size:.82rem;color:var(--muted)}
+.form-side{position:relative;padding:28px}
+.form-side form{display:grid;gap:14px}
+.form-side form[hidden]{display:none}
+.form-side h2{font-size:1.7rem;margin-bottom:4px}
+.form-side label{display:grid;gap:6px;font-size:.9rem;color:var(--silver);font-weight:600}
+.close{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:10px;border:1px solid var(--line-2);background:none;color:var(--silver);font-size:1.4rem;cursor:pointer}
+.tabs{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px;margin:0 52px 18px 0}
+.tabs[hidden]{display:none}
+.tabs button{flex:1;border:0;background:none;color:var(--muted);font:700 .92rem var(--f-body);padding:.65em;border-radius:9px;cursor:pointer;min-height:40px}
+.tabs button[aria-selected="true"]{background:var(--surface-2);color:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pw{position:relative;display:block}
+.pw input{padding-right:84px}
+.pw button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);font:600 .75rem var(--f-mono);cursor:pointer;padding:.5em}
+.meter{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;transition:width .25s,background .25s}
+.msg{font-size:.9rem;min-height:1.2em;margin:0}
+.msg.err{color:var(--bad)}.msg.ok{color:#4ADE80}
+.linkish{background:none;border:0;color:var(--cyan-2);font:600 .88rem var(--f-body);cursor:pointer;padding:.3em 0;text-decoration:underline;text-underline-offset:3px}
+.check{display:flex!important;gap:8px;align-items:flex-start;font-weight:500!important}
+.check input{width:auto;min-height:0;margin-top:4px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:80;background:var(--surface-2);border:1px solid var(--line-2);color:var(--fg);padding:12px 18px;border-radius:12px;font-size:.95rem;box-shadow:0 20px 40px -14px rgba(0,0,0,.8)}
+.toast[hidden]{display:none}
+@media (max-width:760px){.dialog{grid-template-columns:1fr}.dialog aside{flex-direction:row;padding:16px;border-right:0;border-bottom:1px solid var(--line)}.dialog aside svg{width:80px;flex:none}.dialog aside .fine,.dialog aside .eyebrow{display:none}.row2{grid-template-columns:1fr}}
 
 /* Chat con ORI */
 .chat-fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:10px;border:1px solid rgba(245,181,68,.45);background:var(--surface);color:var(--fg);border-radius:999px;padding:5px 16px 5px 5px;cursor:pointer;font:700 .92rem var(--f-body);box-shadow:0 12px 30px -10px rgba(0,0,0,.8)}
@@ -252,6 +306,9 @@ footer .slogan{font-family:var(--f-mono);letter-spacing:.08em;font-size:.8rem}
       <a href="#contacto">Contacto</a>
       <a class="btn btn-primary" href="#contacto">Solicitar diagnóstico</a>
     </nav>
+    <div class="actions" id="authArea">
+      <button class="btn btn-login" id="openLogin" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="lbl">Ingresar</span></button>
+    </div>
   </div>
 </header>
 
@@ -410,6 +467,71 @@ footer .slogan{font-family:var(--f-mono);letter-spacing:.08em;font-size:.8rem}
     <span class="slogan">Innovamos · Desarrollamos · Conectamos</span>
   </div>
 </footer>
+
+<!-- Acceso: misma cuenta de Orion Nova y NOVA Restaurantes (Supabase) -->
+<div class="modal" id="loginModal" hidden role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="dialog">
+    <aside>
+      <p class="eyebrow" style="color:var(--warn)">ORI SECURITY</p>
+      <svg class="ori-host" viewBox="0 0 260 340" aria-hidden="true"><use href="#ori"/></svg>
+      <div class="bubble" id="oriGuard" aria-live="polite">Estoy vigilando tu acceso. Nunca compartas tu contraseña, ni siquiera con el equipo de Orion.</div>
+      <p class="fine">Tu cuenta es la misma de Orion Nova y NOVA Restaurantes: un solo usuario y contraseña para todo el ecosistema.</p>
+    </aside>
+    <div class="form-side">
+      <button class="close" type="button" id="closeLogin" aria-label="Cerrar">×</button>
+      <div class="tabs" role="tablist">
+        <button role="tab" id="tabIn" aria-selected="true" type="button">Ingresar</button>
+        <button role="tab" id="tabUp" aria-selected="false" type="button">Crear cuenta</button>
+      </div>
+
+      <form id="formIn" novalidate>
+        <h2 id="loginTitle">Bienvenido a ORION CORE</h2>
+        <label>Usuario<input id="inUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="tu usuario" required></label>
+        <label>Contraseña<span class="pw"><input id="inPass" type="password" autocomplete="current-password" maxlength="72" required><button type="button" data-toggle="inPass">Mostrar</button></span></label>
+        <div style="display:flex;justify-content:flex-end"><button type="button" class="linkish" id="forgot">¿Olvidaste tu contraseña?</button></div>
+        <p class="msg" id="inMsg" role="alert"></p>
+        <button class="btn btn-primary" type="submit" id="inBtn">Ingresar</button>
+      </form>
+
+      <form id="formUp" novalidate hidden>
+        <h2>Crea tu cuenta Orion</h2>
+        <div class="row2">
+          <label>Nombre<input id="upName" type="text" autocomplete="name" maxlength="60" required></label>
+          <label>Usuario<input id="upUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" placeholder="ej: carlos.neiva" required></label>
+        </div>
+        <div class="row2">
+          <label>Celular<input id="upPhone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="14" placeholder="300 000 0000" required></label>
+          <label>Correo (para recuperar tu clave)<input id="upEmail" type="email" autocomplete="email" maxlength="80" placeholder="tucorreo@gmail.com" required></label>
+        </div>
+        <label>Empresa (opcional)<input id="upCompany" type="text" autocomplete="organization" maxlength="80" placeholder="Nombre de tu negocio"></label>
+        <div class="row2">
+          <label>Contraseña<span class="pw"><input id="upPass" type="password" autocomplete="new-password" maxlength="72" required><button type="button" data-toggle="upPass">Mostrar</button></span></label>
+          <label>Repite la contraseña<input id="upPass2" type="password" autocomplete="new-password" maxlength="72" required></label>
+        </div>
+        <div class="meter" aria-hidden="true"><i id="meterBar"></i></div>
+        <label class="check"><input id="upTerms" type="checkbox"> <span>Autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012 y la <a href="https://orion-nova-technologies-s-a-s.github.io/orion-master-plan/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
+        <p class="msg" id="upMsg" role="alert"></p>
+        <button class="btn btn-primary" type="submit" id="upBtn">Crear cuenta</button>
+      </form>
+
+      <form id="formReset" novalidate hidden>
+        <h2>Recupera tu contraseña</h2>
+        <p class="fine" style="font-size:.88rem">Escribe tu usuario. Te enviamos un código de 6 dígitos al correo de tu cuenta. Si no lo ves, revisa la carpeta de spam.</p>
+        <label>Usuario<input id="rsUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required></label>
+        <div id="rsStep2" hidden style="display:grid;gap:14px">
+          <label>Código que te llegó<input id="rsCode" type="text" inputmode="numeric" maxlength="10" autocomplete="one-time-code" placeholder="123456"></label>
+          <label>Contraseña nueva<span class="pw"><input id="rsPass" type="password" autocomplete="new-password" maxlength="72"><button type="button" data-toggle="rsPass">Mostrar</button></span></label>
+          <label>Repite la contraseña nueva<input id="rsPass2" type="password" autocomplete="new-password" maxlength="72"></label>
+          <button type="button" class="linkish" id="rsResend" style="justify-self:start">Enviar otro código</button>
+        </div>
+        <p class="msg" id="rsMsg" role="alert"></p>
+        <button class="btn btn-primary" type="submit" id="rsBtn">Enviar código</button>
+        <button type="button" class="linkish" id="rsBack" style="justify-self:center">Volver a ingresar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
 
 <!-- Chat con ORI -->
 <button class="chat-fab" id="chatFab" type="button" data-open-chat aria-label="Abrir el chat con ORI">
@@ -595,6 +717,203 @@ footer .slogan{font-family:var(--f-mono);letter-spacing:.08em;font-size:.8rem}
     window.open(waLink(texto),"_blank","noopener");
     msg.textContent="Listo, se abrió WhatsApp con tu mensaje. Solo tienes que enviarlo.";
   });
+})();
+</script>
+<script>
+/* ---------- Acceso a ORION CORE: misma conexión y misma sesión que Orion Nova y NOVA Restaurantes ---------- */
+(function(){
+  "use strict";
+  const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const CFG={url:"https://hreaxtlivntifwmaacox.supabase.co",key:"sb_publishable_vxgx-wGMO1I3tOS6lL_r2A_NOAQj8R0"};
+  const LSK="nova.auth.v1", DOM="@usuarios.novaia.app", ORIGIN="web ORION CORE";
+  const mem={};
+  const ls={ get(k){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):(mem[k]??null); }catch(e){ return mem[k]??null; } },
+             set(k,v){ mem[k]=v; try{ if(v==null) localStorage.removeItem(k); else localStorage.setItem(k,JSON.stringify(v)); }catch(e){} } };
+  const errx=(code,msg,status)=>Object.assign(new Error(msg||code),{code,msg,status});
+  const emailOf=u=>String(u).toLowerCase().replace(/@.*$/,"")+DOM;
+  const pack=j=>({access_token:j.access_token,refresh_token:j.refresh_token,exp:Date.now()+(j.expires_in||3600)*1000,
+    user:{id:j.user.id,username:(j.user.user_metadata&&j.user.user_metadata.username)||String(j.user.email||"").split("@")[0]}});
+  let sess=ls.get(LSK), refreshing=null;
+  async function token(){
+    if(!sess) return null;
+    if(sess.exp-Date.now()>60000) return sess.access_token;
+    if(!refreshing) refreshing=(async()=>{
+      try{ const r=await fetch(CFG.url+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:sess.refresh_token})});
+        if(!r.ok){ sess=null; ls.set(LSK,null); return null; }
+        sess=pack(await r.json()); ls.set(LSK,sess); return sess.access_token;
+      }catch(e){ return sess?sess.access_token:null; } finally{ refreshing=null; }
+    })();
+    return refreshing;
+  }
+  async function api(method,path,body){
+    const h={apikey:CFG.key,"Content-Type":"application/json"}, t=await token(); if(t) h.Authorization="Bearer "+t;
+    let r; try{ r=await fetch(CFG.url+path,{method,headers:h,body:body===undefined?undefined:JSON.stringify(body)}); }
+    catch(e){ throw errx("offline","Sin conexión con el servidor. Revisa tu internet."); }
+    if(!r.ok){ let j=null; try{ j=await r.json(); }catch(e){} throw errx("error",j&&(j.message||j.msg),r.status); }
+    if(r.status===204) return null; const tx=await r.text(); return tx?JSON.parse(tx):null;
+  }
+  async function authCall(kind,body){
+    let r; try{ r=await fetch(CFG.url+(kind==="signup"?"/auth/v1/signup":"/auth/v1/token?grant_type=password"),{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify(body)}); }
+    catch(e){ throw errx("offline","Sin conexión con el servidor. Revisa tu internet."); }
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok){ const m=String(j.msg||j.message||j.error_description||"");
+      if(r.status===429) throw errx("limit","Demasiados intentos. Espera unos minutos.");
+      if(kind==="signup"&&(/already|registered|exists/i.test(m)||j.error_code==="user_already_exists")) throw errx("exists","Ese usuario ya existe. Elige otro o ingresa.");
+      if(kind==="signup"&&/weak|password/i.test(m)) throw errx("weak","El servidor pide una contraseña más fuerte. Prueba una más larga.");
+      if(kind==="login"&&(r.status===400||r.status===401)) throw errx("bad","Usuario o contraseña incorrectos.");
+      throw errx("error",(kind==="signup"?"No se pudo crear la cuenta. ":"No se pudo ingresar. ")+m); }
+    if(!j.access_token) throw errx("confirm","El servidor pide confirmar el correo antes de ingresar.");
+    sess=pack(j); ls.set(LSK,sess); return sess;
+  }
+  const Auth={ signUp:(u,pw)=>authCall("signup",{email:emailOf(u),password:pw,data:{username:u}}),
+               signIn:(u,pw)=>authCall("login",{email:emailOf(u),password:pw}),
+               async signOut(){ const t=sess&&sess.access_token; sess=null; ls.set(LSK,null); if(t){ try{ await fetch(CFG.url+"/auth/v1/logout",{method:"POST",headers:{apikey:CFG.key,Authorization:"Bearer "+t}}); }catch(e){} } } };
+  const Docs={ async get(path){ const r=await api("GET","/rest/v1/docs?path=eq."+encodeURIComponent(path)+"&select=data"); return r&&r[0]?r[0].data:null; },
+               set:(path,data)=>api("POST","/rest/v1/rpc/doc_set",{p_path:path,p_data:data}) };
+  async function audit(e,d){ if(!sess) return;
+    try{ const path="audit/"+sess.user.id, cur=await Docs.get(path); const ev=(cur&&Array.isArray(cur.events)?cur.events.slice(-39):[]); ev.push({t:Date.now(),e:String(e).slice(0,30),d:String(d||"").slice(0,60)}); await Docs.set(path,{events:ev.slice(-40)}); }catch(err){} }
+  function toast(t){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(()=>el.hidden=true,3000); }
+
+  /* ---------- ventana de acceso ---------- */
+  const modal=$("#loginModal"), loginBtn=$("#openLogin"); let lastFocus=null, me=null, acct=null;
+  const guard=t=>{ $("#oriGuard").textContent=t; const h=$("#loginModal .ori-host"); h.classList.add("ori-talking"); clearTimeout(guard.t); guard.t=setTimeout(()=>h.classList.remove("ori-talking"),Math.min(2600,300+t.length*28)); };
+  function openLogin(tab){ lastFocus=document.activeElement; modal.hidden=false; setTab(tab||"in"); document.body.style.overflow="hidden"; setTimeout(()=>(tab==="up"?$("#upName"):$("#inUser")).focus(),30); }
+  function closeLogin(){ modal.hidden=true; document.body.style.overflow=""; if(lastFocus&&document.contains(lastFocus)) lastFocus.focus(); }
+  function setTab(t){ const inn=t==="in";
+    $("#tabIn").setAttribute("aria-selected",inn); $("#tabUp").setAttribute("aria-selected",!inn);
+    $("#formIn").hidden=!inn; $("#formUp").hidden=inn; $("#formReset").hidden=true; $(".tabs").hidden=false;
+    guard(inn?"Estoy vigilando tu acceso. Nunca compartas tu contraseña, ni siquiera con el equipo de Orion.":"Usa 10 o más caracteres y combina mayúsculas, minúsculas, números o símbolos. Yo te digo qué tan fuerte es."); }
+  loginBtn.addEventListener("click",()=>openLogin("in"));
+  $("#closeLogin").addEventListener("click",closeLogin);
+  $("#tabIn").addEventListener("click",()=>setTab("in"));
+  $("#tabUp").addEventListener("click",()=>setTab("up"));
+  modal.addEventListener("click",e=>{ if(e.target===modal) closeLogin(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&!modal.hidden) closeLogin(); });
+  $$("[data-toggle]").forEach(b=>b.addEventListener("click",()=>{ const i=$("#"+b.dataset.toggle), show=i.type==="password"; i.type=show?"text":"password"; b.textContent=show?"Ocultar":"Mostrar"; }));
+
+  /* misma política de contraseñas que Orion Nova y NOVA Restaurantes */
+  function pwPolicy(p,user){
+    const cls=(/[a-z]/.test(p)?1:0)+(/[A-Z]/.test(p)?1:0)+(/\d/.test(p)?1:0)+(/[^A-Za-z0-9]/.test(p)?1:0);
+    let score=0; if(p.length>=10)score++; if(p.length>=14)score++; if(cls>=3)score++; if(cls===4)score++;
+    if(user&&user.length>=3&&p.toLowerCase().includes(user.toLowerCase())) return {ok:false,score:0,msg:"La contraseña no puede contener tu usuario."};
+    if(p.length<10) return {ok:false,score:Math.min(score,1),msg:"La contraseña necesita al menos 10 caracteres."};
+    if(cls<3) return {ok:false,score:Math.min(score,2),msg:"Combina al menos tres tipos: minúscula, mayúscula, número y símbolo."};
+    return {ok:true,score:Math.max(score,3),msg:""};
+  }
+  const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)&&v.length<=80&&!/@usuarios\.novaia\.app$/.test(v);
+  const phoneOf=v=>String(v||"").replace(/[\s()+-]/g,"").replace(/^57(?=3\d{9}$)/,"");
+  function updMeter(){ const v=$("#upPass").value, pol=pwPolicy(v,$("#upUser").value.trim()), bar=$("#meterBar");
+    const lv=[["8%","var(--bad)"],["30%","var(--bad)"],["55%","var(--warn)"],["80%","var(--ok)"],["100%","var(--ok)"]][pol.score];
+    bar.style.width=v?lv[0]:"0"; bar.style.background=lv[1];
+    $("#oriGuard").textContent=!v?"Escribe tu contraseña y te digo qué tan segura es.":pol.ok?(pol.score>=4?"¡Excelente! Difícil de adivinar.":"Buena. Así me gusta."):pol.msg; }
+  $("#upPass").addEventListener("input",updMeter); $("#upUser").addEventListener("input",updMeter);
+  const setMsg=(el,t,kind)=>{ el.className="msg"+(kind?" "+kind:""); el.textContent=t||""; };
+  const busy=(btn,on,txt)=>{ btn.disabled=on; if(on){ btn.dataset.t=btn.textContent; btn.textContent=txt; } else if(btn.dataset.t){ btn.textContent=btn.dataset.t; } };
+
+  $("#formUp").addEventListener("submit",async e=>{
+    e.preventDefault(); const m=$("#upMsg"), btn=$("#upBtn");
+    const name=$("#upName").value.trim(), u=$("#upUser").value.trim().toLowerCase(), ph=phoneOf($("#upPhone").value), pw=$("#upPass").value, em=$("#upEmail").value.trim().toLowerCase(), co=$("#upCompany").value.trim();
+    if(name.length<2) return setMsg(m,"Escribe tu nombre.","err");
+    if(!/^[a-z0-9_.]{3,20}$/.test(u)) return setMsg(m,"El usuario debe tener de 3 a 20 caracteres: letras, números, punto o guion bajo.","err");
+    if(!/^3\d{9}$/.test(ph)) return setMsg(m,"Escribe tu celular colombiano de 10 dígitos (empieza por 3).","err");
+    if(!emailOk(em)) return setMsg(m,"Revisa tu correo: debe verse como nombre@gmail.com.","err");
+    const pol=pwPolicy(pw,u); if(!pol.ok) return setMsg(m,pol.msg,"err");
+    if(pw!==$("#upPass2").value) return setMsg(m,"Las contraseñas no coinciden.","err");
+    if(!$("#upTerms").checked) return setMsg(m,"Necesitamos tu autorización de tratamiento de datos para crear la cuenta.","err");
+    busy(btn,true,"Creando tu cuenta…"); setMsg(m,"");
+    try{
+      const s=await Auth.signUp(u,pw);
+      const data={phone:"+57"+ph,ch:"whatsapp",email:em,username:u,role:"cliente",name,created:Date.now(),origin:"web-orion-core"}; if(co) data.company=co;
+      await Docs.set("data/users/"+s.user.id+"/account",data);
+      audit("registro","cliente · "+ORIGIN);
+      $("#upPass").value=""; $("#upPass2").value=""; updMeter();
+      await afterLogin(true);
+    }catch(err){ setMsg(m,err.msg||err.message||"No se pudo crear la cuenta.","err"); }
+    finally{ busy(btn,false); }
+  });
+
+  let fails=0, lockUntil=0;
+  $("#formIn").addEventListener("submit",async e=>{
+    e.preventDefault(); const m=$("#inMsg"), btn=$("#inBtn");
+    const u=$("#inUser").value.trim().toLowerCase(), pw=$("#inPass").value;
+    if(!u||!pw) return setMsg(m,"Escribe tu usuario y tu contraseña.","err");
+    if(Date.now()<lockUntil) return setMsg(m,"Demasiados intentos. Espera un minuto antes de volver a intentar.","err");
+    busy(btn,true,"Verificando…"); setMsg(m,"");
+    try{ await Auth.signIn(u,pw); fails=0; $("#inPass").value=""; await afterLogin(false); audit("ingreso",ORIGIN); }
+    catch(err){
+      if(err.code==="bad"){ fails++; if(fails>=5){ lockUntil=Date.now()+60000; fails=0; }
+        guard(fails>=3?"Detecto varios intentos fallidos. Si no eres tú, alguien podría estar probando tu cuenta.":"Esa combinación no coincide. Revisa mayúsculas y vuelve a intentar."); }
+      setMsg(m,err.msg||err.message||"No se pudo ingresar.","err");
+    }finally{ busy(btn,false); }
+  });
+
+  /* ---------- recuperar contraseña: la misma función de Orion Nova (código por correo) ---------- */
+  let rsStep=1, rsLast=0;
+  function showReset(on){ $("#formReset").hidden=!on; $("#formIn").hidden=on; $(".tabs").hidden=on;
+    if(on){ rsStep=1; $("#rsStep2").hidden=true; $("#rsBtn").textContent="Enviar código"; setMsg($("#rsMsg"),""); $("#rsUser").value=$("#inUser").value.trim(); $("#rsUser").focus();
+      guard("Nadie de Orion te pedirá este código. Si alguien te lo pide por chat o llamada, es un fraude."); } }
+  async function recFn(payload){ let r;
+    try{ r=await fetch(CFG.url+"/functions/v1/recuperar-clave",{method:"POST",headers:{apikey:CFG.key,"Content-Type":"application/json"},body:JSON.stringify(payload)}); }
+    catch(e){ return {ok:false,msg:"Sin conexión con el servidor. Revisa tu internet."}; }
+    const j=await r.json().catch(()=>({})); return {ok:r.ok&&j.ok!==false,msg:j.msg||"No se pudo completar. Intenta de nuevo."}; }
+  async function rsSend(){ const u=$("#rsUser").value.trim().toLowerCase(), m=$("#rsMsg");
+    if(!/^[a-z0-9_.]{3,20}$/.test(u)) return setMsg(m,"Escribe tu usuario (3 a 20 caracteres).","err");
+    if(Date.now()-rsLast<30000) return setMsg(m,"Espera unos segundos antes de pedir otro código.","err");
+    busy($("#rsBtn"),true,"Enviando…"); const r=await recFn({accion:"enviar",usuario:u}); busy($("#rsBtn"),false); rsLast=Date.now();
+    if(!r.ok) return setMsg(m,r.msg,"err");
+    setMsg(m,r.msg,"ok"); rsStep=2; $("#rsStep2").hidden=false; $("#rsBtn").textContent="Cambiar contraseña"; $("#rsCode").focus(); }
+  $("#forgot").addEventListener("click",()=>showReset(true));
+  $("#rsBack").addEventListener("click",()=>{ showReset(false); setTab("in"); });
+  $("#rsResend").addEventListener("click",rsSend);
+  $("#formReset").addEventListener("submit",async e=>{
+    e.preventDefault(); if(rsStep===1) return rsSend();
+    const m=$("#rsMsg"), u=$("#rsUser").value.trim().toLowerCase(), code=$("#rsCode").value.replace(/\D/g,""), pw=$("#rsPass").value;
+    if(code.length!==6) return setMsg(m,"Escribe el código de 6 dígitos que te llegó al correo.","err");
+    const pol=pwPolicy(pw,u); if(!pol.ok) return setMsg(m,pol.msg,"err");
+    if(pw!==$("#rsPass2").value) return setMsg(m,"Las contraseñas no coinciden.","err");
+    busy($("#rsBtn"),true,"Cambiando…"); const r=await recFn({accion:"confirmar",usuario:u,codigo:code,clave:pw}); busy($("#rsBtn"),false);
+    if(!r.ok) return setMsg(m,r.msg,"err");
+    $("#rsPass").value=""; $("#rsPass2").value=""; $("#rsCode").value="";
+    showReset(false); setTab("in"); $("#inUser").value=u; $("#inPass").focus(); setMsg($("#inMsg"),r.msg,"ok");
+  });
+
+  /* ---------- después de ingresar: menú de usuario ---------- */
+  const roleTxt={cliente:"Cliente",usuario:"Negocio aliado",admin:"Administrador"};
+  async function afterLogin(isNew){
+    let admin=false; acct=null;
+    try{ acct=await Docs.get("data/users/"+sess.user.id+"/account"); }catch(e){}
+    if(!acct){ acct={username:sess.user.username,role:"cliente",created:Date.now()}; try{ await Docs.set("data/users/"+sess.user.id+"/account",acct); }catch(e){} }
+    try{ admin=!!(await api("POST","/rest/v1/rpc/is_admin",{})); }catch(e){}
+    me={username:acct.username||sess.user.username,name:acct.name||acct.username||sess.user.username,role:admin?"admin":(acct.role==="usuario"?"usuario":"cliente"),admin};
+    const first=me.name.split(" ")[0];
+    if(!modal.hidden){ closeLogin(); toast((isNew?"Cuenta creada. ":"Sesión iniciada. ")+"¡Bienvenido, "+first+"!"); }
+    const say=$("#oriSay"); if(say){ say.textContent=""; const b=document.createElement("b"); b.textContent=first; say.append("¡Hola, ",b,"! Ya estás dentro de ORION CORE. Tócame y te doy un consejo de seguridad."); }
+    renderAuth();
+  }
+  const maskMail=e=>{ const [a,d]=String(e).split("@"); return (a.length<=2?a[0]+"•":a.slice(0,2)+"•••")+"@"+d; };
+  function renderAuth(){
+    const area=$("#authArea");
+    if(!me){ area.innerHTML=""; area.appendChild(loginBtn); return; }
+    const first=me.name.split(" ")[0];
+    area.innerHTML='<div class="umenu"><button class="ubtn" id="ubtn" type="button" aria-haspopup="menu" aria-expanded="false"><span class="uav"></span><span class="nm"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>'+
+      '<div class="udrop" id="udrop" role="menu" hidden><div class="udrop-head"><span class="uav"></span><div><b class="fn"></b><small class="un"></small><small class="em"></small><span class="chip-role"></span></div></div>'+
+      '<a class="item" role="menuitem" href="https://orion-nova-technologies-s-a-s.github.io/orion-master-plan/">Mi cuenta en Orion Nova</a>'+
+      '<a class="item" role="menuitem" href="#planes" id="goPlans">Ver planes de ORION CORE</a>'+
+      '<button class="btn btn-ghost" type="button" id="logout">Cerrar sesión</button></div></div>';
+    $$(".uav",area).forEach(a=>a.textContent=first[0].toUpperCase());
+    $(".nm",area).textContent=first; $(".fn",area).textContent=me.name; $(".un",area).textContent="@"+me.username;
+    $(".em",area).textContent=(acct&&acct.email)?maskMail(acct.email):"Sin correo de recuperación";
+    const chip=$(".chip-role",area); chip.textContent=roleTxt[me.role]; if(me.admin) chip.classList.add("admin");
+    const ub=$("#ubtn"), dd=$("#udrop");
+    const setOpen=o=>{ dd.hidden=!o; ub.setAttribute("aria-expanded",String(o)); };
+    ub.addEventListener("click",e=>{ e.stopPropagation(); setOpen(dd.hidden); });
+    document.addEventListener("click",e=>{ if(!area.contains(e.target)) setOpen(false); });
+    addEventListener("keydown",e=>{ if(e.key==="Escape") setOpen(false); });
+    $("#goPlans").addEventListener("click",()=>setOpen(false));
+    $("#logout").addEventListener("click",async()=>{ setOpen(false); audit("salida",ORIGIN); await Auth.signOut(); me=null; acct=null; renderAuth(); toast("Cerraste sesión."); });
+  }
+  // si ya inició sesión en Orion Nova o en NOVA (mismo dominio), entra directo
+  (async()=>{ if(sess){ const t=await token(); if(t) afterLogin(false); else renderAuth(); } })();
 })();
 </script>
 </body>
